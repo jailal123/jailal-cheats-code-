@@ -145,34 +145,60 @@ So `$USER` lets you **write scripts or commands** that will work for **any user*
 ---
 
 
-Understanding chmod a= and File Permissions
-📌 chmod changes file permissions using:
+🔢 chmod with Numbers (Octal Notation)
+Linux permissions for each file are based on three sets of permissions:
+
 css
 Copy
 Edit
-chmod [WHO][OPERATOR][PERMISSIONS] filename
-👥 WHO:
-u = user (owner)
+[ user ][ group ][ others ]
+Each permission (read/write/execute) is represented by a number:
 
-g = group
+Permission	Symbol	Value
+Read	r	4
+Write	w	2
+Execute	x	1
 
-o = others
+To get the numeric value for each set (user, group, others), you add the values of the permissions you want.
 
-a = all (u+g+o)
+🔓 Examples:
+chmod Value	Meaning	Explanation
+7	rwx	4 + 2 + 1 = 7 (full access)
+6	rw-	4 + 2 = 6
+5	r-x	4 + 1 = 5
+4	r--	read-only
+0	---	no permissions
 
-🔧 OPERATOR:
-= → set exactly
+📘 Common chmod Number Combinations
+bash
+Copy
+Edit
+chmod 755 file.sh
+Means:
 
-+ → add
+Who	Value	Permissions
+User	7	rwx
+Group	5	r-x
+Others	5	r-x
 
-- → remove
+bash
+Copy
+Edit
+chmod 600 secret.txt
+Means:
 
-📘 EXAMPLES:
-Command	What It Does
-chmod a=rw file.txt	Gives read+write to all (user, group, others)
-chmod a=r file.txt	Everyone can only read
-chmod u+x script.sh	Add execute to user (owner)
-chmod go-w file.txt	Remove write for group & others
+Who	Value	Permissions
+User	6	rw-
+Group	0	---
+Others	0	---
 
+✅ Used for sensitive files like SSH keys (chmod 400 or 600).
 
-
+🧠 Summary Table:
+Command	Effect
+chmod 777	Everyone can read/write/execute
+chmod 755	User full, others can read/execute
+chmod 700	Only user can read/write/execute
+chmod 644	User can read/write, others read-only
+chmod 600	User read/write, others no access
+chmod 400	User read-only (for .pem files)
