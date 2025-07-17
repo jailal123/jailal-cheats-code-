@@ -1,6 +1,4 @@
-Sure! Here's a **short note** summarizing the issue and how it was resolved:
 
----
 
 ### 🔧 **Issue: Jenkins Cannot Access Docker Daemon**
 
@@ -45,4 +43,88 @@ sudo -u jenkins docker ps
 
 ---
 
-Let me know if you'd like this formatted for a report or documentation!
+### 🐳 **Docker Permission Denied Debug Summary (`docker ps`)**
+
+#### ❌ **Error:**  local machine ❌❌❌❌❌❌❌ LOCAL MACHINE ❌❌❌❌❌❌
+
+```
+permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock for local machine 
+```
+
+---
+
+### ✅ **Step-by-Step Fix**
+
+#### 1. **Check socket permissions**
+
+```bash
+ls -l /var/run/docker.sock
+```
+
+Should show:
+
+```
+srw-rw---- 1 root docker ...
+```
+
+> ✅ If it does: Good — continue.
+
+---
+
+#### 2. **Ensure your user is in the `docker` group**
+
+```bash
+groups
+```
+
+If `docker` is missing:
+
+```bash
+sudo usermod -aG docker $USER
+```
+
+---
+
+#### 3. **Apply group membership**
+
+**Option A (recommended):**
+
+* Log out and log back in to apply group changes
+
+**Option B (quick fix for current session):**
+
+```bash
+newgrp docker
+```
+
+---
+
+#### 4. **Test**
+
+```bash
+docker ps
+```
+
+✅ If no error → you're done!
+
+---
+
+### 🛠 Optional: Restart Docker daemon (if needed)
+
+```bash
+sudo systemctl restart docker
+```
+
+---
+
+### 💡 Temporary workaround:
+
+If you still face issues:
+
+```bash
+sudo docker ps
+```
+
+> But avoid `sudo` for long-term use — prefer fixing group access.
+
+
