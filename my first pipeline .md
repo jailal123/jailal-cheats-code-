@@ -61,5 +61,71 @@ Finished: SUCCESS
 | 🎯 Status    | Pipeline completed successfully       | `Finished: SUCCESS`  |
 
 ---
+✅ **Jenkins Pipeline Execution Summary** —✅✅✅✅✅✅ *Multi-Stage Multi-Agent Build*✅✅✅✅✅
 
-Would you like this in HTML, PDF, or slide format for better presentation?
+---
+
+### 🌟 **Trigger:**
+
+```
+Started by user: jailal
+Repository: https://github.com/iam-veeramalla/Jenkins-Zero-To-Hero
+Jenkinsfile: multi-stage-multi-agent/Jenkinsfile
+```
+
+---
+
+### 🔧 **Pipeline Stages:**
+
+#### 🧩 **1. Back-end Stage**
+
+* **Checkout:** Successful
+* **Maven Image Check:**
+
+  ```sh
+  docker inspect -f . maven:3.8.1-adoptopenjdk-11
+  ```
+
+  🔴 *Image not found* → Pulled from Docker Hub
+* **Docker Pull:**
+
+  ```sh
+  docker pull maven:3.8.1-adoptopenjdk-11
+  ```
+* ✅ **Build Executed Inside Docker Container**
+
+  ```sh
+  mvn --version
+  ```
+
+#### 🎨 **2. Front-end Stage**
+
+* **Checkout:** Successful
+* **Node Image Check:**
+
+  ```sh
+  docker inspect -f . node:16-alpine
+  ```
+
+  ✅ *Image already present*
+* ✅ **Node Version Verified**
+
+  ```sh
+  node --version
+  ```
+
+---
+
+### 📦 **Environment:**
+
+* **Docker Host:** Jenkins **not** running inside container (uses host docker)
+* **Build Agent:** Jenkins default node
+
+---
+
+### 🟢 **Pipeline Result: `SUCCESS`**
+
+All containers initialized correctly, dependencies resolved, and both Maven & Node environments executed without error.
+
+
+
