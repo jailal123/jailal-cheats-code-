@@ -14,8 +14,14 @@ In WSL, **your Windows drives (C:, D:, etc.) are mounted under `/mnt/`**:
 | `D:\`                    | `/mnt/d/`                    |
 | `C:\Users\dell\Pictures` | `/mnt/c/Users/dell/Pictures` |
 
-**cd /mnt/c= we will go to folder name c**
+**** ✅cd /mnt/c= we will go to folder name c**
 
+
+📌📌📌📌📌📌📌📌📌📌📌📌📌📌there can be issue with u bieng not a root user then run command using 
+
+
+sudo ssh -i jailal.pem ubuntu@publicip  📌📌📌📌📌📌📌📌📌📌📌📌📌
+**
 
 ### 🧱 Example: Copy a file using `cp`
 
