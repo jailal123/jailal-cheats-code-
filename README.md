@@ -144,61 +144,83 @@ So `$USER` lets you **write scripts or commands** that will work for **any user*
 
 ---
 
+Excellent — let’s now clearly explain **how numbers are used in `chmod`** along with how they relate to **file permissions** in Linux.
 
-🔢 chmod with Numbers (Octal Notation)
-Linux permissions for each file are based on three sets of permissions:
+---
 
-css
-Copy
-Edit
+## 🔢 chmod with Numbers (Octal Notation)
+
+Linux permissions for each file are based on **three sets** of permissions:
+
+```
 [ user ][ group ][ others ]
+```
+
 Each permission (read/write/execute) is represented by a number:
 
-Permission	Symbol	Value
-Read	r	4
-Write	w	2
-Execute	x	1
+| Permission | Symbol | Value |
+| ---------- | ------ | ----- |
+| Read       | `r`    | 4     |
+| Write      | `w`    | 2     |
+| Execute    | `x`    | 1     |
 
-To get the numeric value for each set (user, group, others), you add the values of the permissions you want.
+To get the numeric value for each set (user, group, others), you **add the values** of the permissions you want.
 
-🔓 Examples:
-chmod Value	Meaning	Explanation
-7	rwx	4 + 2 + 1 = 7 (full access)
-6	rw-	4 + 2 = 6
-5	r-x	4 + 1 = 5
-4	r--	read-only
-0	---	no permissions
+---
 
-📘 Common chmod Number Combinations
-bash
-Copy
-Edit
+### 🔓 Examples:
+
+| chmod Value | Meaning | Explanation                 |
+| ----------- | ------- | --------------------------- |
+| `7`         | `rwx`   | 4 + 2 + 1 = 7 (full access) |
+| `6`         | `rw-`   | 4 + 2 = 6                   |
+| `5`         | `r-x`   | 4 + 1 = 5                   |
+| `4`         | `r--`   | read-only                   |
+| `0`         | `---`   | no permissions              |
+
+---
+
+### 📘 Common `chmod` Number Combinations
+
+```bash
 chmod 755 file.sh
+```
+
 Means:
 
-Who	Value	Permissions
-User	7	rwx
-Group	5	r-x
-Others	5	r-x
+| Who    | Value | Permissions |
+| ------ | ----- | ----------- |
+| User   | 7     | `rwx`       |
+| Group  | 5     | `r-x`       |
+| Others | 5     | `r-x`       |
 
-bash
-Copy
-Edit
+---
+
+```bash
 chmod 600 secret.txt
+```
+
 Means:
 
-Who	Value	Permissions
-User	6	rw-
-Group	0	---
-Others	0	---
+| Who    | Value | Permissions |
+| ------ | ----- | ----------- |
+| User   | 6     | `rw-`       |
+| Group  | 0     | `---`       |
+| Others | 0     | `---`       |
 
-✅ Used for sensitive files like SSH keys (chmod 400 or 600).
+✅ Used for sensitive files like SSH keys (`chmod 400` or `600`).
 
-🧠 Summary Table:
-Command	Effect
-chmod 777	Everyone can read/write/execute
-chmod 755	User full, others can read/execute
-chmod 700	Only user can read/write/execute
-chmod 644	User can read/write, others read-only
-chmod 600	User read/write, others no access
-chmod 400	User read-only (for .pem files)
+---
+
+### 🧠 Summary Table:
+
+| Command     | Effect                                |
+| ----------- | ------------------------------------- |
+| `chmod 777` | Everyone can read/write/execute       |
+| `chmod 755` | User full, others can read/execute    |
+| `chmod 700` | Only user can read/write/execute      |
+| `chmod 644` | User can read/write, others read-only |
+| `chmod 600` | User read/write, others no access     |
+| `chmod 400` | User read-only (for `.pem` files)     |
+
+---
