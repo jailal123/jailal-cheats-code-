@@ -1,6 +1,6 @@
 
 
-### 🔧 **Issue: Jenkins Cannot Access Docker Daemon**
+### 🔧 **Issue: ❌❌❌❌❌❌❌❌Jenkins Cannot Access Docker Daemon**❌❌❌❌❌❌❌❌
 
 **Error:**
 
@@ -45,7 +45,7 @@ sudo -u jenkins docker ps
 
 ### 🐳 **Docker Permission Denied Debug Summary (`docker ps`)**
 
-#### ❌ **Error:**  local machine ❌❌❌❌❌❌❌ LOCAL MACHINE ❌❌❌❌❌❌
+#### ❌ **Error:**  local machine ❌❌❌❌❌❌❌ LOCAL MACHINE NOT ACCESS DOCKER DAEMON❌❌❌❌❌❌
 
 ```
 permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock for local machine 
