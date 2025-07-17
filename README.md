@@ -195,6 +195,12 @@ Means:
 | Others | 5     | `r-x`       |
 
 ---
+| Category | Who It Covers               | Permissions Use         |
+| -------- | --------------------------- | ----------------------- |
+| `User`   | File owner                  | Usually full control    |
+| `Group`  | Members of the file's group | Limited shared access   |
+| `Others` | Everyone else               | Public access (careful) |
+
 
 ```bash
 chmod 600 secret.txt
